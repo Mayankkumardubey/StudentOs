@@ -22,7 +22,7 @@ export interface ICommunityPost extends Document {
   authorId: mongoose.Types.ObjectId;
   text: string;
   attachments: IAttachment[];
-  comments: IComment[];
+  comments: mongoose.Types.DocumentArray<IComment>;
   createdAt: Date;
   updatedAt: Date;
 }
