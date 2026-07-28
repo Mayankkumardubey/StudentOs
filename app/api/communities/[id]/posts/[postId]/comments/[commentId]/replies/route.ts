@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 import { verifyToken } from "@/lib/auth";
 import connectToDatabase from "@/lib/mongodb";
@@ -44,7 +45,7 @@ export async function POST(
     if (!comment) return NextResponse.json({ error: "Comment not found." }, { status: 404 });
 
     comment.replies.push({
-      authorId: payload.userId,
+      authorId: new mongoose.Types.ObjectId(payload.userId),
       text: text.trim(),
       createdAt: new Date(),
     });
