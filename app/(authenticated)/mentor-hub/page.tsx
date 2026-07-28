@@ -18,10 +18,10 @@ import BackgroundOrbs from "@/components/ui/BackgroundOrbs";
 type MicState = "idle" | "listening" | "processing";
 
 // ── Speech recognition constructor helper ──────────────────────────────────────
-function getSpeechRecognitionCtor(): (new () => SpeechRecognition) | null {
+function getSpeechRecognitionCtor(): (new () => any) | null {
   if (typeof window === "undefined") return null;
   const w = window as Record<string, unknown>;
-  return (w.SpeechRecognition as new () => SpeechRecognition) || (w.webkitSpeechRecognition as new () => SpeechRecognition) || null;
+  return (w.SpeechRecognition as new () => any) || (w.webkitSpeechRecognition as new () => any) || null;
 }
 
 // ── Waveform Bars ──────────────────────────────────────────────────────────────
