@@ -15,7 +15,7 @@ type Profile = {
   cgpa: number;
   careerPath: string;
   email: string;
-  avatarBase64: string;
+  avatarBase64?: string;
 };
 
 const placeholderPages = [
