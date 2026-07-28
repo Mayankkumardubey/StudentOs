@@ -75,11 +75,11 @@ export default function MouseReactiveBackground({
     function resize() {
       w = window.innerWidth;
       h = window.innerHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      canvas.style.width = `${w}px`;
-      canvas.style.height = `${h}px`;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      canvas!.width = w * dpr;
+      canvas!.height = h * dpr;
+      canvas!.style.width = `${w}px`;
+      canvas!.style.height = `${h}px`;
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
     resize();
     window.addEventListener("resize", resize);
@@ -127,15 +127,15 @@ export default function MouseReactiveBackground({
       mouseRef.current.y = -9999;
     }
     window.addEventListener("mousemove", onMouseMove);
-    canvas.addEventListener("mouseleave", onMouseLeave);
+    canvas!.addEventListener("mouseleave", onMouseLeave);
 
     const trailAlpha = 0.08;
 
     function animate() {
       noiseTime += noiseTimeStep * speed;
 
-      ctx.fillStyle = `rgba(0,0,0,${trailAlpha})`;
-      ctx.fillRect(0, 0, w, h);
+      ctx!.fillStyle = `rgba(0,0,0,${trailAlpha})`;
+      ctx!.fillRect(0, 0, w, h);
 
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
@@ -169,10 +169,10 @@ export default function MouseReactiveBackground({
         if (p.y < -10) p.y = h + 10;
         else if (p.y > h + 10) p.y = -10;
 
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${p.alpha})`;
-        ctx.fill();
+        ctx!.beginPath();
+        ctx!.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx!.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${p.alpha})`;
+        ctx!.fill();
       }
 
       animRef.current = requestAnimationFrame(animate);
@@ -184,7 +184,7 @@ export default function MouseReactiveBackground({
       cancelAnimationFrame(animRef.current);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouseMove);
-      canvas.removeEventListener("mouseleave", onMouseLeave);
+      canvas!.removeEventListener("mouseleave", onMouseLeave);
     };
   }, [color, particleCount, speed]);
 

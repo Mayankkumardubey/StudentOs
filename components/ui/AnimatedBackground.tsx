@@ -117,7 +117,7 @@ export default function AnimatedBackground({
       mouseRef.current.y = -9999;
     }
     window.addEventListener("mousemove", onMouseMove);
-    canvas.addEventListener("mouseleave", onMouseLeave);
+    canvas!.addEventListener("mouseleave", onMouseLeave);
 
     /* ── Animation loop ─────────────────────────────────────── */
     function animate() {
@@ -198,7 +198,7 @@ export default function AnimatedBackground({
       cancelAnimationFrame(animRef.current);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouseMove);
-      canvas.removeEventListener("mouseleave", onMouseLeave);
+      canvas!.removeEventListener("mouseleave", onMouseLeave);
     };
   }, [particleCount]);
 
