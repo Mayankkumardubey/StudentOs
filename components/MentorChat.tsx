@@ -116,7 +116,7 @@ function saveHistory(sessions: ChatSession[]) {
 // ── Speech recognition check ─────────────────────────────────────────────────
 function getSpeechRecognition(): unknown {
   if (typeof window === "undefined") return null;
-  const w = window as Record<string, unknown>;
+  const w = window as unknown as Record<string, unknown>;
   return w.SpeechRecognition || w.webkitSpeechRecognition || null;
 }
 
@@ -145,7 +145,7 @@ export default function MentorChat() {
 
   // Voice
   const [recording, setRecording] = useState(false);
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const recognitionRef = useRef<any>(null);
   const synthRef = useRef<SpeechSynthesis | null>(null);
 
   // Chat
@@ -300,12 +300,12 @@ export default function MentorChat() {
       return;
     }
 
-    const recognition = new (SpeechRecognitionCtor as new () => SpeechRecognition)();
+    const recognition = new (SpeechRecognitionCtor as new () => any)();
     recognition.continuous = false;
     recognition.interimResults = true;
     recognition.lang = "en-US";
 
-    recognition.onresult = (event: SpeechRecognitionEvent) => {
+    recognition.onresult = (event: any) => {
       let transcript = "";
       for (let i = event.resultIndex; i < event.results.length; i++) {
         transcript += event.results[i][0].transcript;
