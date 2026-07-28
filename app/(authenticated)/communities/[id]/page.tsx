@@ -28,7 +28,7 @@ interface Post {
   _id: string;
   author: { username: string; avatarBase64: string };
   text: string;
-  attachments: { type: string; data: string; filename: string }[];
+  attachments: { type: "image" | "pdf"; data: string; filename: string }[];
   comments: Record<string, unknown>[];
   commentCount: number;
   createdAt: string;
