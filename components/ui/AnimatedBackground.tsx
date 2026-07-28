@@ -72,7 +72,7 @@ export default function AnimatedBackground({
       canvas!.height = h * dpr;
       canvas!.style.width = `${w}px`;
       canvas!.style.height = `${h}px`;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
     resize();
     window.addEventListener("resize", resize);
@@ -124,7 +124,7 @@ export default function AnimatedBackground({
       noiseTime += noiseTimeStep;
 
       // Clear fully each frame — no trail effect, particles sit on the CSS gradient
-      ctx.clearRect(0, 0, w, h);
+      ctx!.clearRect(0, 0, w, h);
 
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
@@ -183,10 +183,10 @@ export default function AnimatedBackground({
           b = 240;
         }
 
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${r},${g},${b},${p.alpha})`;
-        ctx.fill();
+        ctx!.beginPath();
+        ctx!.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx!.fillStyle = `rgba(${r},${g},${b},${p.alpha})`;
+        ctx!.fill();
       }
 
       animRef.current = requestAnimationFrame(animate);
