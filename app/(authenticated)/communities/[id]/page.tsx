@@ -29,7 +29,7 @@ interface Post {
   author: { username: string; avatarBase64: string };
   text: string;
   attachments: { type: "image" | "pdf"; data: string; filename: string }[];
-  comments: Record<string, unknown>[];
+  comments: { _id: string; author: string; text: string; replies: { authorId: string; text: string; createdAt: string }[]; createdAt: string }[];
   commentCount: number;
   createdAt: string;
 }
