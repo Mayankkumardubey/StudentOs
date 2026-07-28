@@ -20,7 +20,7 @@ type MicState = "idle" | "listening" | "processing";
 // ── Speech recognition constructor helper ──────────────────────────────────────
 function getSpeechRecognitionCtor(): (new () => any) | null {
   if (typeof window === "undefined") return null;
-  const w = window as Record<string, unknown>;
+  const w = window as unknown as Record<string, unknown>;
   return (w.SpeechRecognition as new () => any) || (w.webkitSpeechRecognition as new () => any) || null;
 }
 
